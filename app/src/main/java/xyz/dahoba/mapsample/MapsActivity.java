@@ -16,6 +16,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -127,7 +128,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.v(TAG, "updateMap...");
         if (lastLocation != null) {
             LatLng lastLoc = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(lastLoc).title("Marker of my location"));
+            mMap.addMarker(new MarkerOptions()
+                    .position(lastLoc)
+                    .alpha(0.8f)
+                    .title("Marker of my location")
+                    .snippet("Today is very HOT!")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_action_name)));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLoc));
         }
     }
